@@ -1,9 +1,9 @@
 document.getElementById('valueSubmit').addEventListener('submit',amountUpdate)
 
 
-// let balance;
+let balance=0;
 function amountUpdate(e){
-
+  e.preventDefault()
 
  const formUpdate=action=>document.getElementById(action).value
  
@@ -29,7 +29,10 @@ function amountUpdate(e){
 
  console.log( balance)
  
- let balance=balance+crPlus+drCount
+  
+
+ balance=balance+crPlus
+ balance=balance+drCount
  
  
   const numbers=/^[0-9]+$/
@@ -87,7 +90,14 @@ tableData.innerHTML = '';
 //     `
 //   )
 
+let toFig=0
 for(let i=0; i<data.length;i++){
+  
+console.log(data[i].balance )
+
+toFig=toFig+data[i].balance
+console.log( toFig)
+   
 const {date,sourcse,drCount,crPlus,balance,particulars}=data[i]
 
 tableData.innerHTML+=`
@@ -96,7 +106,7 @@ tableData.innerHTML+=`
      <td>${sourcse}</td>
      <td>${drCount}</td>
      <td>${crPlus}</td>
-     <td>${balance}</td>
+     <td>${toFig}</td>
      <td>${particulars}</td>
    </tr>
    `
