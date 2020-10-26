@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>My Finfo</title>
+  </head>
+
+  <body onload="fetchData()">
+
+   <div class="container">
+    
+      
+
+     <form class="p-4" id='valueSubmit' >
+
+        <div class="row d-flex align-items-center mx-auto">
+        
+           <!-- amount -->
+        <div class="mb-3 col-md-4">
+          <label for="amount" class="form-label">Amount change</label>
+          <input type="text" id="amount" class="form-control" placeholder="Amount">
+        </div>
+          <!-- changeType -->
+        <div class="mb-3 col-md-4">
+         <label for="disabledSelect" class="form-label">Add/deducttion</label>
+          <select id="changeType" class="form-select" >
+           <option value=''>Select</option> 
+           <option>Add</option>
+           <option>Deduction</option>           
+         </select>
+       </div>
+
+       <!-- sources -->
+        <div class="mb-3 col-md-4">
+          <label for="disabledSelect" class="form-label">Sources</label>
+          <select id="sources" class="form-select"
+          
+          >
+            <option value=''>Select</option>
+            <option>Brac Bank(1501)</option>
+            <option>Brac Bank(1103)</option>
+            <option>City Bank</option>
+            <option>Hand Cash</option>
+            <option>Met-Life</option>
+          </select>
+        </div>
+
+          <!-- date Box-->
+            <!-- current date -->
+          <!-- <div class="mb-3 col-md-3 form-check">
+            <input type="radio" class="form-check-input" id="cr_date" name='box' onclick="crDate()" >
+            <label class="form-check-label" for="exampleCheck1">Current Date</label>
+          </div> -->
+
+            <!-- custom date -->
+          <!-- <div class="mb-3 col-md-3 form-check">
+            <input type="radio" class="form-check-input" id="cu_date" name='box' onclick=""  >
+            <label class="form-check-label" for="cu_date">Custom date</label>
+          </div> -->
+
+          
+          <!-- Date -->
+          <div class="mb-3 col-md-3 " id='date'>
+            <label for="amount" class="form-label">Select Date</label>
+            <!-- <input type="date" id="date_view" class="form-control" onfocus="(this. type='date')" -->
+            <input 
+            type="text"
+            id="date_view"
+            class="form-control"
+            placeholder="DD/MM/YYYY"
+            onfocus="(this.type='date')"> 
+            
+          </div>
+
+          <!-- Particulars -->
+          <div class="mb-3 col-md-4">
+            <label for="disabledSelect" class="form-label">Particulars</label>
+             <input type="text" id="particulars" class="form-control"
+             placeholder="Reason" >
+                        
+            
+          </div>
+          
+          
+
+         
+        <!-- submit button -->
+        <div class="col-md-3  text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      
+      </div>
+    </form>
+  </div>
+
+  <!-- table -->
+
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col-md-12 col-md-10">
+      <table class="table table-dark table-striped table-bordered border-primary text-center">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Sources</th>
+            <th scope="col">Debit</th>
+            <th scope="col">Credit</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Particulers</th>
+          </tr>
+        </thead>
+        <tbody id='table_data'>
+          <!-- <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+    
+    </div>
+  </div>
+
+  <div class="container ">
+    <div class="row">
+      <div class="col-md-10 col-sm-10 mx-auto">
+        <button class="btn btn-dark text-light mb-2" onclick="handleBbl_1501()">Brac Bank(1501)</button>
+
+        <button class="btn btn-dark text-light mb-2" onclick="handleBbl_1103()">Brac Bank(1103)</button>
+    
+        <button class="btn btn-dark text-light mb-2" onclick="handleCity()">City Bank</button>
+    
+        <button class="btn btn-dark text-light mb-2" onclick="handleCash()">Hand Cash</button>
+
+      </div>
+    
+  
+    <div class="col-md-12 col-sm-10 " id="brac_data_1501">
+      <table class="table table-dark table-striped table-bordered border-primary text-center">
+        <thead class="">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Sources</th>
+            <th scope="col">Debit</th>
+            <th scope="col">Credit</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Particulers</th>
+          </tr>
+        </thead>
+        <tbody id='brac_data'>
+          
+        </tbody>
+      </table>
+    
+    </div>
+  </div>
+  </div>
+  
+  
+    
+    
+   
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+
+    
+
+    
+    <!-- my script -->
+    <script src="script.js"></script>
+  </body>
+</html>
