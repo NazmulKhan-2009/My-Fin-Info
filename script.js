@@ -31,8 +31,8 @@ function amountUpdate(e){
  
   
 
- balance=balance+crPlus
- balance=balance+drCount
+ balance=balance+crPlus+drCount
+//  balance=balance
  
  
   const numbers=/^[0-9]+$/
@@ -90,29 +90,49 @@ tableData.innerHTML = '';
 //     `
 //   )
 
-let toFig=0
-for(let i=0; i<data.length;i++){
+
+
+// let toFig=0
+// for(let i=0; i<data.length;i++){
   
-console.log(data[i].balance )
+// console.log(data[i].balance )
 
-toFig=toFig+data[i].balance
-console.log( toFig)
+// toFig=toFig+data[i].balance
+// console.log( toFig)
    
-const {date,sourcse,drCount,crPlus,balance,particulars}=data[i]
+// const {date,sourcse,drCount,crPlus,balance,particulars}=data[i]
 
-tableData.innerHTML+=`
+// tableData.innerHTML+=`
+//     <tr>
+//      <td>${date}</td>
+//      <td>${sourcse}</td>
+//      <td>${drCount}</td>
+//      <td>${crPlus}</td>
+//      <td>${toFig}</td>
+//      <td>${particulars}</td>
+//    </tr>
+//    `
+// }
+
+let totalBalance=0
+
+data.map(total=>{
+    totalBalance=totalBalance+total.crPlus+total.drCount;
+    // balance=balance+bracB.drCount;
+
+    tableData.innerHTML+=`
     <tr>
-     <td>${date}</td>
-     <td>${sourcse}</td>
-     <td>${drCount}</td>
-     <td>${crPlus}</td>
-     <td>${toFig}</td>
-     <td>${particulars}</td>
+     <td>${total.date}</td>
+     <td>${total.sourcse}</td>
+     <td>${total.drCount}</td>
+     <td>${total.crPlus}</td>
+     <td>${totalBalance}</td>
+     <td>${total.particulars}</td>
    </tr>
    `
-}
+  }
 
-  
+) 
 }
 let brac_1103=true;
 const handleBbl_1501=()=>{
