@@ -18,6 +18,7 @@
    <div class="container">
     
       
+     
 
      <form class="p-4" id='valueSubmit' >
 
@@ -52,25 +53,11 @@
             <option>Met-Life</option>
           </select>
         </div>
-
-          <!-- date Box-->
-            <!-- current date -->
-          <!-- <div class="mb-3 col-md-3 form-check">
-            <input type="radio" class="form-check-input" id="cr_date" name='box' onclick="crDate()" >
-            <label class="form-check-label" for="exampleCheck1">Current Date</label>
-          </div> -->
-
-            <!-- custom date -->
-          <!-- <div class="mb-3 col-md-3 form-check">
-            <input type="radio" class="form-check-input" id="cu_date" name='box' onclick=""  >
-            <label class="form-check-label" for="cu_date">Custom date</label>
-          </div> -->
-
-          
+         
           <!-- Date -->
           <div class="mb-3 col-md-3 " id='date'>
             <label for="amount" class="form-label">Select Date</label>
-            <!-- <input type="date" id="date_view" class="form-control" onfocus="(this. type='date')" -->
+            
             <input 
             type="text"
             id="date_view"
@@ -118,24 +105,7 @@
           </tr>
         </thead>
         <tbody id='table_data'>
-          <!-- <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr> -->
+         
         </tbody>
       </table>
     </div>
@@ -176,7 +146,127 @@
     
     </div>
   </div>
-  </div>
+</div>
+
+<!-- Credit Card Infos -->
+
+
+<div class="container pt-5">
+    
+      <div class='text-center'>
+        <button class="btn btn-danger" onclick="ccfetchData()">Credit card</button>
+      </div>
+
+      <div id="cc_disp">
+  <form class="p-4" id='ccDataSubmit' >
+
+     <div class="row d-flex align-items-center mx-auto">
+     
+        <!-- amount -->
+     <div class="mb-3 col-md-4">
+       <label for="amount" class="form-label">Amount change</label>
+       <input type="text" id="cc_amount" class="form-control" placeholder="Amount">
+     </div>
+       <!-- changeType -->
+     <div class="mb-3 col-md-4">
+      <label for="disabledSelect" class="form-label">Add/deducttion</label>
+       <select id="cc_changeType" class="form-select" >
+        <option value=''>Select</option> 
+        <option>Expense</option>
+        <option>Bill Pay</option>           
+      </select>
+    </div>
+
+    <!-- sources -->
+     <div class="mb-3 col-md-4">
+       <label for="disabledSelect" class="form-label">Sources</label>
+       <select id="cc_bank" class="form-select"
+       
+       >
+         <option value='' >Select</option>
+         <option>MTBL</option>
+         <option>CITY VISA</option>
+         <option>SEBL</option>
+         <option>EBL</option>
+         <option>BANK ASIA</option>
+         <option>LANKA BANGLA</option>
+         <option>NRB</option>
+       </select>
+     </div>
+      
+       <!-- Date -->
+       <div class="mb-3 col-md-3 " id='cc_date'>
+         <label for="amount" class="form-label">Select Date</label>
+         
+         <input 
+         type="text"
+         id="cc_date_view"
+         class="form-control"
+         placeholder="DD/MM/YYYY"
+         onfocus="(this.type='date')"> 
+         
+       </div>
+
+       <!-- Particulars -->
+       <div class="mb-2 col-md-4">
+         <label for="disabledSelect" class="form-label">Particulars</label>
+          <input type="text" id="cc_particulars" class="form-control"
+          placeholder="Reason" >
+                     
+         
+       </div>
+       <!-- <div class="col-md-2">
+         <input type="radio" name="type"  id="pos" value="POS"> POS</input>
+         
+        <input type="radio" name="type"  id="ecom" value="e-com"> E-Com</input>
+        
+       </div> -->
+
+       <div class="mb-3 col-md-2">
+        <label for="disabledSelect" class="form-label">Sources</label>
+        <select id="cc_tran_type" class="form-select">
+          <option value='' >Select</option>
+          <option value='POS'>POS Transaction</option>
+          <option value="ecom">E-Com Transaction</option>
+          
+        </select>
+      </div>
+       
+       
+
+      
+     <!-- submit button -->
+     <div class="col-md-2  text-center">
+       <button type="submit" class="btn btn-primary">Submit</button>
+     </div>
+   
+   </div>
+ </form>
+
+
+ <div class="col-md-12 col-sm-10 ">
+  <table class="table table-dark table-striped table-bordered border-primary text-center">
+    <thead class="">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Card Info</th>
+        <th scope="col">Expense/Liability</th>
+        <th scope="col">Paid Bill</th>
+        <th scope="col">Present Balance</th>
+        <th scope="col">Transaction Type</th>
+        <th scope="col">Particulers</th>
+      </tr>
+    </thead>
+    <tbody id='ccTableData'>
+      
+    </tbody>
+  </table>
+
+</div>
+</div>
+</div>
+
+
   
   
     

@@ -179,6 +179,118 @@ const handleBbl_1501=()=>{
   
 }
 
+// Credit Card Functionality
+
+document.getElementById('ccDataSubmit').addEventListener('submit', ccUpdate)
+
+function ccUpdate(e){
+  // document.getElementById('cc_disp').style.display='block'
+  e.preventDefault()
+
+   const callDom=ids=>document.getElementById(ids).value
+
+   const ccAmount=callDom('cc_amount')
+   const ccEffect=callDom('cc_changeType')
+   const ccBank=callDom('cc_bank')
+   const ccDate=callDom('cc_date_view') 
+   const ccParticulars=callDom('cc_particulars')
+   const ccTranType=callDom('cc_tran_type')
+
+  console.log( 'CC Update started')
+  console.log(ccAmount, ccEffect, ccBank, ccDate, ccParticulars, ccTranType )
+
+  // Amount Modification
+  const ccExpFig=ccEffect==='Expense'? `${-ccAmount}`: '0'
+ console.log(typeof ccExpFig);
+ const haveToPay=Number(ccExpFig)
+ console.log(typeof haveToPay)
+
+ const ccPayFig=ccEffect==='Bill Pay'?`${ccAmount}` : '0'
+ const billPaid=Number(ccPayFig)
+ console.log( ccPayFig)
+ console.log(typeof billPaid)
+
+
+ balance=balance+haveToPay+billPaid
+//  balance=balance
+ 
+ 
+  const numbers=/^[0-9]+$/
+  if(ccAmount.match(numbers) && ccEffect!=="" && ccBank!=="" && ccDate !=='' && ccParticulars!=='' && ccTranType!=='' ){
+
+    
+    const ccTransaction={ccDate,ccEffect,ccBank,haveToPay,billPaid,balance,ccParticulars,ccTranType }
+
+    let ccReflection=[]
+    if(localStorage.getItem('ccReflection')){
+      ccReflection=JSON.parse(localStorage.getItem('ccReflection'))
+      
+    }
+    ccReflection.push(ccTransaction)
+
+    localStorage.setItem('ccReflection' , JSON.stringify(ccReflection))
+
+    document.getElementById('ccDataSubmit').reset()
+    // fetchData()
+    ccfetchData()
+    document.getElementById('cc_disp').style.display="block"
+
+    
+    
+
+  
+   console.log(ccTransaction);
+   console.log( "cc submited")
+   
+  }else{
+   alert( 'Not okay')
+  }
+  
+
+
+}
+
+let ccView=true;
+const ccfetchData=()=>{
+
+  if(ccView){
+    document.getElementById('cc_disp').style.display="block"
+    ccView=false
+  }else{
+    document.getElementById('cc_disp').style.display="none"
+    ccView=true
+  }
+
+  const ccDataUpdate =document.getElementById('ccTableData')  
+  const ccData=JSON.parse(localStorage.getItem('ccReflection'))
+  const ccTableData=document.getElementById('cc_table_data')
+
+  ccDataUpdate.innerHTML = '';
+  
+  
+  
+  let totalBalance=0
+  
+  ccData.map(total=>{
+      totalBalance=totalBalance+total.haveToPay+total.billPaid;
+      // balance=balance+bracB.drCount;
+  
+      ccDataUpdate.innerHTML+=`
+      <tr>
+       <td>${total.ccDate}</td>
+       <td>${total.ccBank}</td>
+       <td>${total.haveToPay}</td>
+       <td>${total.billPaid}</td>
+       <td>${totalBalance}</td>
+       <td>${total.ccTranType}</td>
+       <td>${total.ccParticulars}</td>
+     </tr>
+     `
+    }
+  
+  ) 
+  }
+
 
 
 
